@@ -1,0 +1,22 @@
+version: "3.5"
+services:
+  django_docker_demo:
+    build: .
+    networks:
+      demo-net:
+    volumes:
+      - demo_static:/code/static
+  nginx:
+    build: ./nginx
+    ports:
+      - "8083:80"
+    networks:
+      demo-net:
+    volumes:
+      - demo_static:/var/www/code/static
+
+networks:
+  demo-net:
+
+volumes:
+  demo_static:
