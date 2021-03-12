@@ -5,7 +5,9 @@ services:
     networks:
       demo-net:
     volumes:
-      - demo_static:/code/static
+      - ./static:/code/static
+      - demo_media:/code/media
+      - ./uwsgi:/code/uwsgi
   nginx:
     build: ./nginx
     ports:
@@ -13,10 +15,13 @@ services:
     networks:
       demo-net:
     volumes:
-      - demo_static:/var/www/code/static
+      - ./nginx/ssl:/usr/share/nginx/ssl  # 挂载ssl证书目录
+      - ./nginx/nginx.log:/var/log/nginx  # 挂载日志
+      - ./static:/usr/share/nginx/html/static
+      - demo_media:/usr/share/nginx/html/media
 
 networks:
   demo-net:
 
 volumes:
-  demo_static:
+  demo_media:

@@ -1,6 +1,12 @@
 FROM nginx:latest
-RUN rm /etc/nginx/conf.d/default.conf
+# 添加配置文件
 COPY ./nginx.conf /etc/nginx/conf.d/
 
-RUN mkdir -p /var/www/code/static
+
+RUN rm /etc/nginx/conf.d/default.conf \
+ && mkdir -p /usr/share/nginx/html/static \
+ && mkdir -p /usr/share/nginx/html/media \
+ && mkdir -p /usr/share/nginx/ssl
+
+# 关闭守护模式
 CMD ["nginx", "-g", "daemon off;"]
