@@ -8,5 +8,7 @@ RUN rm /etc/nginx/conf.d/default.conf \
  && mkdir -p /usr/share/nginx/html/media \
  && mkdir -p /usr/share/nginx/ssl
 
+# COPY ./ssl /usr/share/nginx/ssl
+
 # 关闭守护模式
 CMD ["nginx", "-g", "daemon off;"]

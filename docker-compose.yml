@@ -1,6 +1,6 @@
 version: "3.5"
 services:
-  django_docker_demo:
+  website:
     build: .
     networks:
       demo-net:
@@ -15,7 +15,6 @@ services:
     networks:
       demo-net:
     volumes:
-      - ./nginx/ssl:/usr/share/nginx/ssl  # 挂载ssl证书目录
       - ./nginx/nginx.log:/var/log/nginx  # 挂载日志
       - ./static:/usr/share/nginx/html/static
       - demo_media:/usr/share/nginx/html/media
